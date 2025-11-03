@@ -28,7 +28,7 @@ jobs:
     - name: Run Playwright tests
       env:
         # pasar el token de GITHUB Actions a los tests
-        GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: npx playwright test --project="API Tests"
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}

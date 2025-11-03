@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
  
-const REPO = 'playwright1';
+const REPO = 'playwright';
 const USER = 'Santivaher95';
  
 //test.beforeAll(async ({ request }) => {
