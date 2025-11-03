@@ -43,13 +43,15 @@ export default defineConfig({
      {
       name: 'API Tests',
       testMatch: 'APITests/**/*',
-      use: { 
-        baseURL: 'https://api.github.com',
-        extraHTTPHeaders: {
-         'Accept': 'application/vnd.github.v3+json',   
-         'Authorization': `token ${process.env.API_TOKEN}`,
-        }
-       }
+      use: {
+  baseURL: 'https://api.github.com',
+  extraHTTPHeaders: {
+    'Accept': 'application/vnd.github+json',
+    // usa "token" para el GITHUB_TOKEN
+    'Authorization': `token ${process.env.API_TOKEN}`,
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+}
     },
  
     //{

@@ -4,10 +4,18 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
+# <- permiso global para todo el workflow
+permissions:
+  issues: write
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    # también puedes definir permisos por job (opcional)
+    # permissions:
+    #   issues: write
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -18,7 +26,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      env:
+        # pasar el token de GITHUB Actions a los tests
+        GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+      run: npx playwright test --project="API Tests"
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

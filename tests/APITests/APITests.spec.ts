@@ -1,12 +1,22 @@
 import { test, expect } from '@playwright/test';
  
-const REPO = 'playwright';
+const REPO = 'playwright1';
 const USER = 'Santivaher95';
  
-test('Puedo crear un bug en el repo', async ({ request }) => {
+//test.beforeAll(async ({ request }) => {
+    //const response = await request.post('user/repos', {
+      //  data: {
+        //    name: REPO
+        //}
+    //});
+    //expect(response.ok()).toBeTruthy();
+//})
+ 
+ 
+test('Puedo crear un bug en el repooo', async ({ request }) => {
     const newIssue = await request.post(`/repos/${USER}/${REPO}/issues`, {
         data: {
-            title: '[Bug] Explotó todo',
+            title: '[Bug] Explotó todoo',
             body: 'Estamos perdidirijillos!',
         }
     });
@@ -15,15 +25,15 @@ test('Puedo crear un bug en el repo', async ({ request }) => {
     const issues = await request.get(`/repos/${USER}/${REPO}/issues`);
     expect(issues.ok()).toBeTruthy();
     expect(await issues.json()).toContainEqual(expect.objectContaining({
-        title: '[Bug] Explotó todo',
-        body: 'Estamos perdidirijillos!'
+        title: '[Bug] Explotó todoo',
+        body: 'Estamos perdidirijilloos!'
     }));
 });
  
 test('Puedo crear un feature request', async ({ request }) => {
     const newIssue = await request.post(`/repos/${USER}/${REPO}/issues`, {
         data: {
-            title: '[Feature] Quiero que haga helados',
+            title: '[Feature] Quiero que haga heladoos',
             body: 'Estaría buenísimo que el repo haga helados 🍦',
         }
     });
@@ -32,7 +42,12 @@ test('Puedo crear un feature request', async ({ request }) => {
     const issues = await request.get(`/repos/${USER}/${REPO}/issues`);
     expect(issues.ok()).toBeTruthy();
     expect(await issues.json()).toContainEqual(expect.objectContaining({
-        title: '[Feature] Quiero que haga helados',
+        title: '[Feature] Quiero que haga heladoos',
         body: 'Estaría buenísimo que el repo haga helados 🍦'
     }));
 });
+ 
+//test.afterAll(async ({ request }) => {
+    //const response = await request.delete(`/repos/${USER}/${REPO}`);
+    //expect(response.ok()).toBeTruthy();
+//});
