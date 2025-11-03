@@ -16,7 +16,7 @@ const USER = 'Santivaher95';
 test('Puedo crear un bug en el repooo', async ({ request }) => {
     const newIssue = await request.post(`/repos/${USER}/${REPO}/issues`, {
         data: {
-            title: '[Bug] Explotó todito',
+            title: '[Bug] Explotó todo',
             body: 'Estamos perdidirijillos!',
         }
     });
@@ -25,15 +25,15 @@ test('Puedo crear un bug en el repooo', async ({ request }) => {
     const issues = await request.get(`/repos/${USER}/${REPO}/issues`);
     expect(issues.ok()).toBeTruthy();
     expect(await issues.json()).toContainEqual(expect.objectContaining({
-        title: '[Bug] Explotó todito',
-        body: 'Estamos perdidirijilloos!'
+        title: '[Bug] Explotó todo',
+        body: 'Estamos perdidirijillos!'
     }));
 });
  
 test('Puedo crear un feature request', async ({ request }) => {
     const newIssue = await request.post(`/repos/${USER}/${REPO}/issues`, {
         data: {
-            title: '[Feature] Quiero que haga heladoos',
+            title: '[Feature] Quiero que haga helados',
             body: 'Estaría buenísimo que el repo haga helados 🍦',
         }
     });
@@ -42,7 +42,7 @@ test('Puedo crear un feature request', async ({ request }) => {
     const issues = await request.get(`/repos/${USER}/${REPO}/issues`);
     expect(issues.ok()).toBeTruthy();
     expect(await issues.json()).toContainEqual(expect.objectContaining({
-        title: '[Feature] Quiero que haga heladoos',
+        title: '[Feature] Quiero que haga helados',
         body: 'Estaría buenísimo que el repo haga helados 🍦'
     }));
 });
