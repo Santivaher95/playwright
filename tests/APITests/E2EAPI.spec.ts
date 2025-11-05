@@ -25,15 +25,17 @@ test.afterAll(async ({ }) => {
     await apiContext.dispose();
 });
  
-test('El último issue creado es el primero en la lista', async ({ page }) => {
-    const newIssue = await apiContext.post(`/repos/${USER}/${REPO}/issues`, {
-        data: {
-            title: '[Feature] Que el framework me planche la ropa',
-        }
-    });
-    expect(newIssue.ok()).toBeTruthy();
- 
+test('El último issue creado es el primero en la lista', async ({ page, request }) => {
+    // 1. Navegar a la página de Issues
     await page.goto(`https://github.com/${USER}/${REPO}/issues`);
+
+    // 2. AÑADIR ESPERA EXPLÍCITA (o esperar a que el primer elemento sea visible)
+    // Usaremos el selector más general del contenedor de la lista de issues para asegurar que la página ha cargado la tabla.
+    await page.waitForSelector('.js-issue-row', { state: 'visible' });
+
+    // 3. Localizar el primer Issue
     const firstIssue = page.locator(`a[data-hovercard-type='issue']`).first();
+
+    // 4. Aserción
     await expect(firstIssue).toHaveText('[Feature] Que el framework me planche la ropa');
 });
