@@ -3,14 +3,6 @@ import { test, expect } from '@playwright/test';
 const REPO = 'playwright';
 const USER = 'Santivaher95';
  
-//test.beforeAll(async ({ request }) => {
-    //const response = await request.post('user/repos', {
-      //  data: {
-        //    name: REPO
-        //}
-    //});
-    //expect(response.ok()).toBeTruthy();
-//})
  
  
 test('Puedo crear un bug en el repooo', async ({ request }) => {
@@ -47,7 +39,3 @@ test('Puedo crear un feature request', async ({ request }) => {
     }));
 });
  
-//test.afterAll(async ({ request }) => {
-    //const response = await request.delete(`/repos/${USER}/${REPO}`);
-    //expect(response.ok()).toBeTruthy();
-//});
